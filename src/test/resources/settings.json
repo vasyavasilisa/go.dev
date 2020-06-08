@@ -1,0 +1,39 @@
+{
+  "browserName": "chrome",
+  "isRemote": false,
+  "remoteConnectionUrl": "http://localhost:4444/wd/hub",
+  "driverSettings": {
+    "chrome": {
+      "capabilities": {
+        "enableVNC": true
+      },
+      "options": {
+        "intl.accept_languages": "en",
+        "safebrowsing.enabled": "true"
+      },
+      "startArguments": [
+        "--allow-running-insecure-content"
+      ]
+    },
+    "firefox": {
+
+    },
+    "iexplorer": {
+
+    }
+  },
+  "timeouts": {
+    "timeoutImplicit": 1,
+    "timeoutCondition": 70,
+    "timeoutScript": 10,
+    "timeoutPageLoad": 180,
+    "timeoutPollingInterval": 300,
+    "timeoutPollingIntervalIncreased": 3000,
+    "timeoutCommand": 120,
+    "timeoutMinimal": 15,
+    "timeoutDefault": 300,
+    "timeoutAverage": 30,
+    "timeoutTiny": 3,
+    "timeoutEmailWait": 600
+  }
+}
