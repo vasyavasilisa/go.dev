@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -130,5 +131,11 @@ public abstract class BaseElement {
 
     protected String formatLogMsg(String message) {
         return String.format("%1$s '%2$s' %3$s %4$s", this.getElementType(), this.getName(), "::", message);
+    }
+
+    public void hover() {
+        Actions actions = new Actions(getBrowser().getDriver());
+        actions.moveToElement(getElement());
+        actions.perform();
     }
 }
