@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.List;
+
 public abstract class BaseElement {
     private static final String LOG_CLICKING = "Clicking";
     private static final String LOG_GETTING_TEXT = "Getting text";
@@ -35,10 +37,12 @@ public abstract class BaseElement {
     public boolean waitForIsPresent(long timeout) {
         ExpectedCondition<Boolean> condition = ((WebDriver wd) -> {
             try {
-                WebElement elem = getBrowser().getDriver().findElement(locator);
-                if (elem.isDisplayed()) {
-                    element = (RemoteWebElement) elem;
-                    return true;
+                List<WebElement> elems = getBrowser().getDriver().findElements(locator);
+                for(WebElement elem : elems) {
+                    if (elem.isDisplayed()) {
+                        element = (RemoteWebElement) elem;
+                        return true;
+                    }
                 }
                 return false;
             } catch (Exception e) {

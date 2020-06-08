@@ -12,7 +12,7 @@ public final class BrowserManager {
     }
 
     public static Browser getBrowser() {
-        if (BROWSER_CONTAINER.get() == null) {
+        if (BROWSER_CONTAINER.get() == null || BROWSER_CONTAINER.get().getDriver().getSessionId() == null) {
             setUpDefaultBrowser();
         }
         return BROWSER_CONTAINER.get();

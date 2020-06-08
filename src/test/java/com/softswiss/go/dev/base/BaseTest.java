@@ -4,7 +4,6 @@ import framework.Logger;
 import framework.SoftAsserts;
 import framework.StepLogger;
 import framework.webdriver.BrowserManager;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,7 +21,7 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void before(ITestResult testResult) {
+    public void before() {
         StepLogger.getInstance().resetStepCounter();
         Logger.getInstance().setUpLogFile(getClass().getSimpleName());
         BrowserManager.getBrowser().getDriver().navigate().to("https://go.dev/");
@@ -30,7 +29,7 @@ public abstract class BaseTest {
     }
 
     @AfterMethod
-    public void afterMethod(ITestResult testResult) {
+    public void afterMethod() {
         BrowserManager.getBrowser().quit();
         SoftAsserts.refreshSoftAssert();
     }
