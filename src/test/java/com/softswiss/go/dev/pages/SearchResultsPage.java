@@ -23,7 +23,7 @@ public class SearchResultsPage extends BaseForm {
 
     public boolean isPackageFoundAmongAllPages(String pack) {
         while (!isPackageFoundOnCurrentPage(pack) && btnPaginationNext.isEnabled()) {
-            btnPaginationNext.clickAndWait();
+            btnPaginationNext.click();
         }
         return isPackageFoundOnCurrentPage(pack);
     }
