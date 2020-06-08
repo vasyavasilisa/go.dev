@@ -3,18 +3,21 @@
   "isRemote": false,
   "remoteConnectionUrl": "http://localhost:4444/wd/hub",
   "driverSettings": {
-    "chrome": {
-      "capabilities": {
-        "enableVNC": true
-      },
-      "options": {
-        "intl.accept_languages": "en",
-        "safebrowsing.enabled": "true"
-      },
-      "startArguments": [
-        "--allow-running-insecure-content"
-      ]
+    "capabilities": {
+      "enableVNC": true
     },
+    "options": {
+      "intl.accept_languages": "en",
+      "safebrowsing.enabled": "true",
+      "profile.default_content_settings.popups": "0",
+      "plugins.always_open_pdf_externally": true,
+      "disable-popup-blocking": "false",
+      "download.prompt_for_download": "false",
+    },
+    "startArguments": [
+      "--disable-extensions",
+      "--allow-running-insecure-content"
+    ]},
     "firefox": {
 
     },
