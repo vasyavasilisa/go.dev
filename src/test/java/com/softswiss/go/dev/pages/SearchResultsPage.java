@@ -46,6 +46,7 @@ public class SearchResultsPage extends BaseForm {
     }
 
     public void clickOnPackage(String pack) {
-        getPackageLink(pack).waitAndClick();
+        getPackageLink(pack).waitForElementClickable();
+        getPackageLink(pack).clickAndWait();
     }
 }

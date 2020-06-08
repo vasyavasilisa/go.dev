@@ -1,11 +1,13 @@
 package framework.elements;
 
 import framework.Logger;
+import framework.enums.Script;
 import framework.enums.Setting;
 import framework.waitings.SmartWait;
 import framework.webdriver.Browser;
 import framework.webdriver.BrowserManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -52,6 +54,25 @@ public abstract class BaseElement {
         return SmartWait.waitForTrue(condition, timeout);
     }
 
+    /**
+     * wait the download page (on Javascript readyState)
+     */
+    protected void waitForPageToLoad() {
+        Logger.getInstance().info("Waiting for page to load");
+        ExpectedCondition<Boolean> condition = d -> {
+            if (!(d instanceof JavascriptExecutor)) {
+                return true;
+            }
+            Object result = ((JavascriptExecutor) d)
+                    .executeScript(Script.RETURN_DOC_STATE.getScript());
+            return result instanceof Boolean && (Boolean) result;
+        };
+        boolean isLoaded = SmartWait.waitForTrue(condition, Setting.PAGE_LOAD_WAIT.getLongValue());
+        if (!isLoaded) {
+            Logger.getInstance().warn("Page loading timed out");
+        }
+    }
+
     public RemoteWebElement getElement() {
         waitForIsPresentAndAssert();
         return element;
@@ -70,6 +91,11 @@ public abstract class BaseElement {
     public void waitAndClick() {
         this.waitForElementClickable();
         this.click();
+    }
+
+    public void clickAndWait() {
+        this.click();
+        this.waitForPageToLoad();
     }
 
     public void waitForElementClickable() {
