@@ -17,7 +17,7 @@
     "startArguments": [
       "--disable-extensions",
       "--allow-running-insecure-content"
-    ]},
+    ],
     "firefox": {
 
     },
